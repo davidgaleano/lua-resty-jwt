@@ -236,7 +236,7 @@ local function parse_jwe(self, preshared_key, encoded_header, encoded_encrypted_
     error({reason="invalid algorithm: " .. alg})
   end
 
-  local key, enc_key
+  local key, enc_key, _
   if alg == str_const.DIR then
     if not preshared_key  then
         error({reason="preshared key must not be null"})
@@ -437,7 +437,7 @@ local function sign_jwe(self, secret_key, jwt_obj)
   end
 
   -- TODO: implement logic for creating enc key and mac key and then encrypt key
-  local key, encrypted_key, mac_key, enc_key
+  local key, encrypted_key, mac_key, enc_key, _
   if alg ==  str_const.DIR then
     _, mac_key, enc_key = derive_keys(enc, secret_key)
     encrypted_key = ""
